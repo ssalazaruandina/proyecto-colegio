@@ -1,0 +1,19 @@
+<div class="container-md" style="width: 250px; height: 500px; ">
+  <div class="row g-6 formulario">
+    <img src="/assets/students.png" alt="Icono de alumos">
+    <form [formGroup]="login" (ngSubmit)="validar(login.value)">
+      <div class="mb-2">
+        <label for="exampleInputEmail1" class="form-label">Usuario: </label>
+        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="usuario" required formControlName="usuario" placeholder="Ingrese usuario">
+      </div>
+      <div class="mb-2">
+        <label for="exampleInputPassword1" class="form-label">Contraseña: </label>
+        <input type="password" class="form-control" id="exampleInputPassword1" required  formControlName="contrasenia" placeholder="Ingrese contraseña">
+      </div>
+      <button type="submit" class="btn btn-primary boton" value="log in">Ingresar</button>
+      <strong *ngIf="DatosCorrectos == true" >Datos incorrectos</strong>
+    </form>
+    </div>
+</div>
+
+

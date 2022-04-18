@@ -1,0 +1,110 @@
+<app-nav></app-nav>
+<div class="container-fluid" style="margin-top: 150px;">
+    <table class="table table-bordered ">
+      <thead>
+        <tr>
+          <th scope="col">N° Sesion</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Hora inicio</th>
+          <th scope="col">Hora fin</th>
+          <th scope="col">Unidad</th> 
+          <th scope="col" style="text-align: center;">Registrar Asistencia</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let registro of registroAsistencias; index as i">
+          <th scope="row">{{registro.nroSesionRA}} </th>
+          <td>{{registro.fechaRA}}</td>
+          <td>{{registro.horaInicio}}</td>
+          <td>{{registro.horaFin}}</td>
+          <td>Unidad {{registro.Unidad}}</td>
+          <td>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+              <button class="btn btn-success me-md-2" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop" (click)="cargarRegistro(i)">Registrar</button>
+              <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Editar</button>
+            </div>
+          </td>
+        </tr>
+    </table>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Registro de asistencia</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <h4 style="font-weight: bold; text-align: center;">DATOS DE CLASE</h4>
+          <div class="row g-3 align-items-center" >
+            <div class="col-auto">
+              <label for="" class="col-form-label" style="font-weight: bold;">Fecha: </label>
+              <div class="col-auto">
+                <label for="">{{mostrarFecha()}} </label>
+              </div>
+            </div>        
+            <div class="col-auto">
+              <label for="" class="col-form-label" style="font-weight: bold;">Salon: </label>
+              <div class="col-auto">
+                <label for="">{{aula.codAula}} </label>
+              </div>
+            </div>         
+            <div class="col-auto">
+              <label for="" class="col-form-label" style="font-weight: bold;">Grado: </label>
+              <div class="col-auto">
+                <label for="">{{docente.nivelCargoEstudiantes}} </label>
+              </div>
+            </div>          
+            <div class="col-auto">
+              <label for="" class="col-form-label" style="font-weight: bold;">Nombre docente: </label>
+              <div class="col-auto">
+                <label for="">{{getNombreDocente()}}</label>
+              </div>
+            </div>
+          </div>
+          <table class="table table-bordered " style="margin-top: 30px;">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido Paterno</th>
+                <th scope="col">Apellido Materno</th>
+                <th scope="col">Asistencia</th>
+                <th scope="col">Modificaciones</th>
+                <th scope="col">Alumno</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let alum of alumnos; index as j">
+                <th scope="row">1</th>
+                <td>{{alum.nombreA}} </td>
+                <td>{{alum.apellidoPA}} </td>
+                <td>{{alum.apellidoMA}} </td>
+                <td>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="guardarAsistencia(j,0)"  >
+                    <label class="form-check-label" for="flexRadioDefault11">Asistio</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="guardarAsistencia(j,1)" >
+                    <label class="form-check-label" for="flexRadioDefault12">Tarde</label>
+                  </div>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" (click)="guardarAsistencia(j,2)" >
+                    <label class="form-check-label" for="flexRadioDefault13">No asistio</label>
+                  </div>
+                </td>
+                <td>No</td>
+                <td><img src="/assets/student2.png" alt="foto alumno" width="50px" height="50px"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="modal-footer" >
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal" >Actualizar</button>
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
